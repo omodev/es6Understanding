@@ -32,7 +32,7 @@ function noHoisting(x) {
   }
 }
 
-noHoisting(4);  // to enter the if condition replace test(4) by test(5)
+ // to enter the if condition replace test(4) by test(5)
 
 
 
@@ -48,7 +48,6 @@ var val = 333 ;    // change var with let will throw an error if declared on the
    return val
 }
 
-noRedeclaration();
 
 
 
@@ -66,7 +65,6 @@ function otherScopeDeclaration(x){
 
 }
 
-otherScopeDeclaration(5);
 
 
 
@@ -100,3 +98,24 @@ function variableAccInLoop() {
 
        console.log(i);   // i is accessible here it logs 10, because i gets hoisted
 }
+
+
+  // =
+function knownProblem() {
+
+      var funcs = [];
+
+         for (var i = 0; i < 10; i++) {
+
+           funcs.push(function(){console.log(i);});
+         }
+
+         funcs.forEach(function(func){
+
+                func();   // PROBLEM : this outputs "10" ten times
+         })
+
+}
+
+
+knownProblem();
